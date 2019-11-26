@@ -5,14 +5,23 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| name | Moniker to apply to resources | string | n/a | yes |
 | account\_kind | Storage account kind | string | `"StorageV2"` | no |
 | account\_replication\_type | Storage account replication type | string | `"LRS"` | no |
 | account\_tier | Storage account tier | string | `"Standard"` | no |
 | file\_shares | List of storage share definitions | list(map(any)) | `[]` | no |
+| name | Moniker to apply to resources | string | n/a | yes |
 | network\_rules | Storage account network rules, docs.microsoft.com/en-gb/azure/storage/common/storage-network-security | object | `{ "bypass": [ "None" ], "default_action": "Allow", "ip_rules": [], "virtual_network_subnet_ids": [] }` | no |
 | storage\_blobs | List of storage blob definitions | list(map(string)) | `[]` | no |
 | storage\_containers | List of storage container definitions | list(map(string)) | `[]` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| storage\_account | Storage Account Resource |
+| storage\_blobs | Storage blob Resource |
+| storage\_containers | Storage Container Resource |
+| storage\_shrares | Storage share Resource |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
