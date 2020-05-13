@@ -1,4 +1,4 @@
-# Storage Account
+# Storage Account [![](https://github.com/rhythmictech/terraform-azurerm-storage-account/workflows/check/badge.svg)](https://github.com/rhythmictech/terraform-azurerm-storage-account/actions) <a href="https://twitter.com/intent/follow?screen_name=RhythmicTech"><img src="https://img.shields.io/twitter/follow/RhythmicTech?style=social&logo=RhythmicTech" alt="follow on Twitter"></a>
 Terraform module for managing Azure storage accounts and their sub-resources
 
 ## Example
