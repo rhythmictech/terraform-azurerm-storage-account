@@ -36,10 +36,13 @@ module "azure_file_share" {
 | account\_kind | Storage account kind | `string` | `"StorageV2"` | no |
 | account\_replication\_type | Storage account replication type | `string` | `"LRS"` | no |
 | account\_tier | Storage account tier | `string` | `"Standard"` | no |
+| create\_resource\_group | Boolean to create resource group (default) or not | `bool` | `true` | no |
 | file\_shares | List of storage share definitions | `list(map(any))` | `[]` | no |
 | location | Primary region used for project | `string` | `"eastus"` | no |
 | name | Moniker to apply to resources | `string` | n/a | yes |
 | network\_rules | Storage account network rules, docs.microsoft.com/en-gb/azure/storage/common/storage-network-security | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": [<br>    "None"<br>  ],<br>  "default_action": "Allow",<br>  "ip_rules": [],<br>  "virtual_network_subnet_ids": []<br>}</pre> | no |
+| resource\_group\_name | defaults to '${var.name}-rg' | `string` | `""` | no |
+| storage\_account\_name | defaults to  'lower(replace(var.name, /[^0-9A-Za-z]/, ''))'' | `string` | `""` | no |
 | storage\_blobs | List of storage blob definitions | `list(map(string))` | `[]` | no |
 | storage\_containers | List of storage container definitions | `list(map(string))` | `[]` | no |
 | tags | Tags to apply to resources | `map(string)` | <pre>{<br>  "terraform_managed": true<br>}</pre> | no |
