@@ -1,3 +1,6 @@
+provider "azurerm" {
+  version = "~> 1.43.0"
+}
 
 module "azure_file_share" {
   source = "../.."
@@ -6,10 +9,6 @@ module "azure_file_share" {
     name  = "eeoc_web_files"
     quota = "20"
   }]
-  tags = {
-    terraform_managed = true
-    delete_me         = please
-  }
 }
 
 output "example_azure_file_share" {

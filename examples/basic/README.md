@@ -3,7 +3,9 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| azurerm | ~> 1.43.0 |
 
 ## Providers
 
