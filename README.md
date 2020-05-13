@@ -1,4 +1,17 @@
 # Storage Account
+Terraform module for managing Azure storage accounts and their sub-resources
+
+## Example
+```
+module "azure_file_share" {
+  source = "../.."
+  name   = "example"
+  file_shares = [{
+    name  = "eeoc_web_files"
+    quota = "20"
+  }]
+}
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
