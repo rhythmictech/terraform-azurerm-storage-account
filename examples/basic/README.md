@@ -1,15 +1,10 @@
 # Storage Account
 A most basic example
 
-See the plan result:
+See the result:
 ```
->  terraform plan
-Refreshing Terraform state in-memory prior to plan...
-The refreshed state will be used to calculate this plan, but will not be
-persisted to local or remote state storage.
-
-
-------------------------------------------------------------------------
+>  alias tf="terraform"
+>  tf plan
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -17,11 +12,18 @@ Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
+  # random_pet.unique_name will be created
+  + resource "random_pet" "unique_name" {
+      + id        = (known after apply)
+      + length    = 2
+      + separator = "-"
+    }
+
   # module.azure_file_share.azurerm_resource_group.this will be created
   + resource "azurerm_resource_group" "this" {
       + id       = (known after apply)
       + location = "eastus"
-      + name     = "example-RG"
+      + name     = (known after apply)
       + tags     = {
           + "terraform_managed" = "true"
         }
@@ -41,7 +43,7 @@ Terraform will perform the following actions:
       + id                                = (known after apply)
       + is_hns_enabled                    = false
       + location                          = "eastus"
-      + name                              = "example"
+      + name                              = (known after apply)
       + primary_access_key                = (sensitive value)
       + primary_blob_connection_string    = (sensitive value)
       + primary_blob_endpoint             = (known after apply)
@@ -58,7 +60,7 @@ Terraform will perform the following actions:
       + primary_table_host                = (known after apply)
       + primary_web_endpoint              = (known after apply)
       + primary_web_host                  = (known after apply)
-      + resource_group_name               = "example-RG"
+      + resource_group_name               = (known after apply)
       + secondary_access_key              = (sensitive value)
       + secondary_blob_connection_string  = (sensitive value)
       + secondary_blob_endpoint           = (known after apply)
@@ -136,20 +138,16 @@ Terraform will perform the following actions:
   # module.azure_file_share.azurerm_storage_share.this[0] will be created
   + resource "azurerm_storage_share" "this" {
       + id                   = (known after apply)
-      + name                 = "eeocwebfiles"
+      + name                 = "myexamplefileshare"
       + quota                = 20
       + resource_group_name  = (known after apply)
-      + storage_account_name = "example"
+      + storage_account_name = (known after apply)
       + url                  = (known after apply)
     }
 
-Plan: 3 to add, 0 to change, 0 to destroy.
+Plan: 4 to add, 0 to change, 0 to destroy.
 
-------------------------------------------------------------------------
-
-Note: You didn't specify an "-out" parameter to save this plan, so Terraform
-can't guarantee that exactly these actions will be performed if
-"terraform apply" is subsequently run.
+Do you want to perform these actions?
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -161,7 +159,9 @@ can't guarantee that exactly these actions will be performed if
 
 ## Providers
 
-No provider.
+| Name | Version |
+|------|---------|
+| random | n/a |
 
 ## Inputs
 
