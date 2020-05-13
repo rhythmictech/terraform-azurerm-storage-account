@@ -6,10 +6,18 @@ variable "name" {
   type        = string
 }
 
+variable "location" {
+  description = "Primary region used for project"
+  type        = string
+  default     = "eastus"
+}
+
 variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
-  default     = {}
+  default = {
+    terraform_managed = true
+  }
 }
 
 ########################################
