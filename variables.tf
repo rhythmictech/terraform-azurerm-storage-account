@@ -20,9 +20,27 @@ variable "tags" {
   }
 }
 
+variable "create_resource_group" {
+  description = "Boolean to create resource group (default) or not"
+  type        = bool
+  default     = true
+}
+
+variable "resource_group_name" {
+  description = "defaults to '$${var.name}-rg'"
+  type        = string
+  default     = ""
+}
+
 ########################################
 # Storage Account Variables
 ########################################
+variable "storage_account_name" {
+  description = "defaults to  'lower(replace(var.name, /[^0-9A-Za-z]/, ''))''"
+  type        = string
+  default     = ""
+}
+
 variable "account_tier" {
   description = "Storage account tier"
   type        = string
