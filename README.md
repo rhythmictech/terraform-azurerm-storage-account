@@ -6,7 +6,7 @@ To create a single fileshare with 20 GB of space:
 ```
 module "azure_file_share" {
   source  = "rhythmictech/storage-account/azurerm"
-  version = "1.0.0-alpha"
+  version = "1.1.0"
 
   name   = "example"
   file_shares = [{
