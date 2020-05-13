@@ -1,12 +1,20 @@
-# =============================================
-# variables
-# =============================================
-
+########################################
+# General Variables
+########################################
 variable "name" {
   description = "Moniker to apply to resources"
   type        = string
 }
 
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+  default     = {}
+}
+
+########################################
+# Storage Account Variables
+########################################
 variable "account_tier" {
   description = "Storage account tier"
   type        = string
@@ -41,6 +49,9 @@ variable "network_rules" {
   }
 }
 
+########################################
+# SA sub-resource Variables
+########################################
 variable "storage_containers" {
   description = "List of storage container definitions"
   type        = list(map(string))

@@ -25,6 +25,7 @@
 | network\_rules | Storage account network rules, docs.microsoft.com/en-gb/azure/storage/common/storage-network-security | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": [<br>    "None"<br>  ],<br>  "default_action": "Allow",<br>  "ip_rules": [],<br>  "virtual_network_subnet_ids": []<br>}</pre> | no |
 | storage\_blobs | List of storage blob definitions | `list(map(string))` | `[]` | no |
 | storage\_containers | List of storage container definitions | `list(map(string))` | `[]` | no |
+| tags | Tags to apply to resources | `map(string)` | `{}` | no |
 
 ## Outputs
 

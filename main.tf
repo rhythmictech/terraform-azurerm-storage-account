@@ -1,23 +1,23 @@
 
+########################################
+# General
+########################################
 terraform {
   required_version = ">= 0.12"
 }
 
-module "tags" {
-  source  = "rhythmictech/tags/terraform"
-  version = "0.0.1"
-  names   = ["STORAGE-ACCT", var.name]
-}
-
 resource "azurerm_resource_group" "this" {
-  name     = "${var.name}-RG"
+  name     = local.resource_group_name
   location = var.location
-  tags     = local.common_tags
+  tags     = var.tags
 }
 
+########################################
+# General
+########################################
 resource "azurerm_storage_account" "this" {
-  name                     = lower(replace(var.name, "/[^0-9A-Za-z]/", ""))
-  tags                     = local.common_tags
+  name                     = local.storage_account_name
+  tags                     = var.tags
   resource_group_name      = azurerm_resource_group.this.name
   location                 = azurerm_resource_group.this.location
   account_tier             = var.account_tier
@@ -55,6 +55,8 @@ resource "azurerm_storage_share" "this" {
   name                 = lower(replace(lookup(var.file_shares[count.index], "name", "fileshare${count.index}"), "/[^0-9A-Za-z]/", ""))
   storage_account_name = azurerm_storage_account.this.name
   quota                = lookup(var.file_shares[count.index], "quota", null)
+
+  # TODO(sblack4): make this work
   # metadata             = lookup(var.file_shares[count.index], "metadata", {})
 
   # dynamic "acl" {
