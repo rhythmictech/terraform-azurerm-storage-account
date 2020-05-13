@@ -2,12 +2,15 @@
 Terraform module for managing Azure storage accounts and their sub-resources
 
 ## Example
+To create a single fileshare with 20 GB of space:
 ```
 module "azure_file_share" {
-  source = "../.."
+  source  = "rhythmictech/storage-account/azurerm"
+  version = "1.0.0-alpha"
+
   name   = "example"
   file_shares = [{
-    name  = "eeoc_web_files"
+    name  = "my_example_fileshare"
     quota = "20"
   }]
 }

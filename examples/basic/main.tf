@@ -6,7 +6,7 @@ module "azure_file_share" {
   source = "../.."
   name   = "example"
   file_shares = [{
-    name  = "eeoc_web_files"
+    name  = "my_example_fileshare"
     quota = "20"
   }]
 }
