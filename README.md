@@ -54,7 +54,7 @@ module "azure_file_share" {
 | storage\_account | Storage Account Resource |
 | storage\_blobs | Storage blob Resource |
 | storage\_containers | Storage Container Resource |
-| storage\_shrares | Storage share Resource |
+| storage\_shares | Storage share Resource |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
