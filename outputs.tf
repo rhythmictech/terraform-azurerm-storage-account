@@ -14,7 +14,7 @@ output "storage_blobs" {
   value       = azurerm_storage_blob.this
 }
 
-output "storage_shrares" {
+output "storage_shares" {
   description = "Storage share Resource"
   value       = azurerm_storage_share.this
 }
