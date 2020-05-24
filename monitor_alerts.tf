@@ -21,9 +21,9 @@ resource "azurerm_monitor_metric_alert" "storage_account" {
     dynamic "dimension" {
       for_each = each.value.dimension
       content {
-        name     = each.value.name
-        operator = each.value.operator
-        values   = each.value.values
+        name     = dimension.value.name
+        operator = dimension.value.operator
+        values   = dimension.value.values
       }
     }
   }
