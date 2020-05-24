@@ -110,9 +110,8 @@ variable "monitor_metric_alert_criteria" {
   description = "Map of name = criteria objects"
   type = map(object({
     # criteria.*.aggregation to be one of [Average Count Minimum Maximum Total]
-    aggregation      = string
-    metric_namespace = string
-    metric_name      = string
+    aggregation = string
+    metric_name = string
     # criteria.0.operator to be one of [Equals NotEquals GreaterThan GreaterThanOrEqual LessThan LessThanOrEqual]
     operator  = string
     threshold = number

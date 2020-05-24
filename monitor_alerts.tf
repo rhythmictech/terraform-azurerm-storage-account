@@ -12,7 +12,7 @@ resource "azurerm_monitor_metric_alert" "storage_account" {
   # see https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported
   criteria {
     aggregation      = each.value.aggregation
-    metric_namespace = each.value.metric_namespace
+    metric_namespace = "Microsoft.Storage/storageAccounts"
     metric_name      = each.value.metric_name
     operator         = each.value.operator
     threshold        = each.value.threshold
