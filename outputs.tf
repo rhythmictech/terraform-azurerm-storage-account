@@ -18,3 +18,8 @@ output "storage_shares" {
   description = "Storage share Resource"
   value       = azurerm_storage_share.this
 }
+
+output "monitor_metric_alerts" {
+  description = "List Azure Monitor Metric Alert resources for the Storage Account"
+  value       = azurerm_monitor_metric_alert.storage_account
+}
