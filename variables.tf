@@ -99,13 +99,13 @@ variable "file_shares" {
 ########################################
 # Monitoring
 ########################################
-variable "monitor_action_group_id" {
+variable "storage_account_monitor_action_group_id" {
   default     = ""
   description = "ID of Azure Monitor Action Group for metric to trigger"
   type        = string
 }
 
-variable "monitor_metric_alert_criteria" {
+variable "storage_account_monitor_metric_alert_criteria" {
   default     = {}
   description = "Map of name = criteria objects"
   type = map(object({

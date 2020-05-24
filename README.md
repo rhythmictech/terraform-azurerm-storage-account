@@ -39,11 +39,11 @@ module "azure_file_share" {
 | create\_resource\_group | Boolean to create resource group (default) or not | `bool` | `true` | no |
 | file\_shares | List of storage share definitions | `list(map(any))` | `[]` | no |
 | location | Primary region used for project | `string` | `"eastus"` | no |
-| monitor\_action\_group\_id | ID of Azure Monitor Action Group for metric to trigger | `string` | `""` | no |
-| monitor\_metric\_alert\_criteria | Map of name = criteria objects | <pre>map(object({<br>    # criteria.*.aggregation to be one of [Average Count Minimum Maximum Total]<br>    aggregation = string<br>    metric_name = string<br>    # criteria.0.operator to be one of [Equals NotEquals GreaterThan GreaterThanOrEqual LessThan LessThanOrEqual]<br>    operator  = string<br>    threshold = number<br>  }))</pre> | `{}` | no |
 | name | Moniker to apply to resources | `string` | n/a | yes |
 | network\_rules | Storage account network rules, docs.microsoft.com/en-gb/azure/storage/common/storage-network-security | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": [<br>    "None"<br>  ],<br>  "default_action": "Allow",<br>  "ip_rules": [],<br>  "virtual_network_subnet_ids": []<br>}</pre> | no |
 | resource\_group\_name | defaults to '${var.name}-rg' | `string` | `""` | no |
+| storage\_account\_monitor\_action\_group\_id | ID of Azure Monitor Action Group for metric to trigger | `string` | `""` | no |
+| storage\_account\_monitor\_metric\_alert\_criteria | Map of name = criteria objects | <pre>map(object({<br>    # criteria.*.aggregation to be one of [Average Count Minimum Maximum Total]<br>    aggregation = string<br>    metric_name = string<br>    # criteria.0.operator to be one of [Equals NotEquals GreaterThan GreaterThanOrEqual LessThan LessThanOrEqual]<br>    operator  = string<br>    threshold = number<br>  }))</pre> | `{}` | no |
 | storage\_account\_name | defaults to  'lower(replace(var.name, /[^0-9A-Za-z]/, ''))'' | `string` | `""` | no |
 | storage\_blobs | List of storage blob definitions | `list(map(string))` | `[]` | no |
 | storage\_containers | List of storage container definitions | `list(map(string))` | `[]` | no |
