@@ -108,6 +108,7 @@ variable "storage_account_monitor_action_group_id" {
 variable "storage_account_monitor_metric_alert_criteria" {
   default     = {}
   description = "Map of name = criteria objects"
+
   type = map(object({
     # criteria.*.aggregation to be one of [Average Count Minimum Maximum Total]
     aggregation = string
@@ -115,5 +116,11 @@ variable "storage_account_monitor_metric_alert_criteria" {
     # criteria.0.operator to be one of [Equals NotEquals GreaterThan GreaterThanOrEqual LessThan LessThanOrEqual]
     operator  = string
     threshold = number
+
+    dimension = object({
+      name     = string
+      operator = string
+      values   = list(string)
+    })
   }))
 }

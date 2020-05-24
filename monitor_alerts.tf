@@ -17,5 +17,11 @@ resource "azurerm_monitor_metric_alert" "storage_account" {
     metric_name      = each.value.metric_name
     operator         = each.value.operator
     threshold        = each.value.threshold
+
+    dimension {
+      name     = each.value.dimension.name
+      operator = each.value.dimension.operator
+      values   = each.value.dimension.values
+    }
   }
 }
