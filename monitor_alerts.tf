@@ -2,7 +2,7 @@
 resource "azurerm_monitor_metric_alert" "storage_account" {
   for_each            = var.storage_account_monitor_metric_alert_criteria
   name                = "${var.name}-${upper(each.key)}"
-  resource_group_name = azurerm_resource_group.this.id
+  resource_group_name = azurerm_resource_group.this.name
   scopes              = azurerm_storage_account.this.id
   tags                = var.tags
 
