@@ -36,7 +36,9 @@ module "azure_file_share" {
 | account\_kind | Storage account kind | `string` | `"StorageV2"` | no |
 | account\_replication\_type | Storage account replication type | `string` | `"LRS"` | no |
 | account\_tier | Storage account tier | `string` | `"Standard"` | no |
+| create\_recovery\_vault | Create an Azure Recovery Services vault. Currently only File Share backups are supported. | `bool` | `false` | no |
 | create\_resource\_group | Boolean to create resource group (default) or not | `bool` | `true` | no |
+| file\_share\_backup\_policy | Map container time and count for File Share backup policy. See https://registry.terraform.io/providers/hashicorp/azurerm/1.43.0/docs/resources/backup_policy_file_share | <pre>object({<br>    time  = string<br>    count = number<br>  })</pre> | `null` | no |
 | file\_shares | List of storage share definitions | `list(map(any))` | `[]` | no |
 | location | Primary region used for project | `string` | `"eastus"` | no |
 | name | Moniker to apply to resources | `string` | n/a | yes |
