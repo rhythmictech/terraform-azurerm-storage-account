@@ -54,6 +54,7 @@ module "azure_file_share" {
 | Name | Description |
 |------|-------------|
 | monitor\_metric\_alerts | List Azure Monitor Metric Alert resources for the Storage Account |
+| resource\_group | Resource Group Resource |
 | storage\_account | Storage Account Resource |
 | storage\_blobs | Storage blob Resource |
 | storage\_containers | Storage Container Resource |
