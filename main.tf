@@ -55,21 +55,48 @@ resource "azurerm_storage_share" "this" {
   name                 = lower(replace(lookup(var.file_shares[count.index], "name", "fileshare${count.index}"), "/[^0-9A-Za-z]/", ""))
   storage_account_name = azurerm_storage_account.this.name
   quota                = lookup(var.file_shares[count.index], "quota", null)
+}
 
-  # TODO(sblack4): make this work
-  # metadata             = lookup(var.file_shares[count.index], "metadata", {})
+########################################
+# Recovery
+########################################
 
-  # dynamic "acl" {
-  #   for_each = lookup(var.file_shares[count.index], "acl", [])
+resource "azurerm_recovery_services_vault" "this" {
+  count               = var.create_recovery_vault ? 1 : 0
+  name                = "${var.name}-recovery-vault"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  sku                 = "Standard"
+  tags                = var.tags
+}
 
-  #   content {
-  #     id = lookup(var.file_shares[count.index].acl, "id", "acl${count.index}")
+resource "azurerm_backup_container_storage_account" "this" {
+  count               = var.create_recovery_vault ? 1 : 0
+  resource_group_name = azurerm_resource_group.this.name
+  recovery_vault_name = try(azurerm_recovery_services_vault.this[0].name, null)
+  storage_account_id  = azurerm_storage_account.this.id
+}
 
-  #     access_policy {
-  #       expiry      = lookup(var.file_shares[count.index].acl, "expiry")
-  #       permissions = lookup(var.file_shares[count.index].acl, "permissions")
-  #       start       = lookup(var.file_shares[count.index].acl, "start")
-  #     }
-  #   }
-  # }
+resource "azurerm_backup_policy_file_share" "this" {
+  count               = var.create_recovery_vault ? 1 : 0
+  name                = "${var.name}-recovery-vault-policy"
+  resource_group_name = azurerm_resource_group.this.name
+  recovery_vault_name = try(azurerm_recovery_services_vault.this[0].name, null)
+
+  backup {
+    frequency = "Daily"
+    time      = var.file_share_backup_policy.time
+  }
+  retention_daily {
+    count = var.file_share_backup_policy.count
+  }
+}
+
+resource "azurerm_backup_protected_file_share" "this" {
+  count                     = var.create_recovery_vault ? length(azurerm_storage_share.this[*]) : 0
+  resource_group_name       = azurerm_resource_group.this.name
+  recovery_vault_name       = try(azurerm_recovery_services_vault.this[0].name, null)
+  source_storage_account_id = azurerm_storage_account.this.id
+  source_file_share_name    = try(azurerm_storage_share.this[count.index].name, null)
+  backup_policy_id          = try(azurerm_backup_policy_file_share.this[0].id, null)
 }

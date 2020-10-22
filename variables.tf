@@ -124,3 +124,22 @@ variable "storage_account_monitor_metric_alert_criteria" {
     }))
   }))
 }
+
+########################################
+# Recovery
+########################################
+
+variable "create_recovery_vault" {
+  default     = false
+  description = "Create an Azure Recovery Services vault. Currently only File Share backups are supported."
+  type        = bool
+}
+
+variable "file_share_backup_policy" {
+  default     = null
+  description = "Map container time and count for File Share backup policy. See https://registry.terraform.io/providers/hashicorp/azurerm/1.43.0/docs/resources/backup_policy_file_share"
+  type = object({
+    time  = string
+    count = number
+  })
+}

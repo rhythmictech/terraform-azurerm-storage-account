@@ -9,12 +9,17 @@ locals {
 }
 
 module "azure_file_share" {
-  source = "../.."
-  name   = local.unique_storage_account_name
+  source                = "../.."
+  name                  = local.unique_storage_account_name
+  create_recovery_vault = true
   file_shares = [{
     name  = "my_example_fileshare"
     quota = "20"
   }]
+  file_share_backup_policy = {
+    time  = "04:00"
+    count = 60
+  }
 }
 
 output "example_azure_file_share" {
