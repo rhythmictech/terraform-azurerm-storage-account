@@ -96,7 +96,7 @@ resource "azurerm_backup_protected_file_share" "this" {
   count                     = var.create_recovery_vault ? length(azurerm_storage_share.this[*]) : 0
   resource_group_name       = azurerm_resource_group.this.name
   recovery_vault_name       = try(azurerm_recovery_services_vault.this[0].name, null)
-  source_storage_account_id = try(azurerm_backup_container_storage_account.this[0].storage_account_id, null)
+  source_storage_account_id = azurerm_storage_account.this.id
   source_file_share_name    = try(azurerm_storage_share.this[count.index].name, null)
   backup_policy_id          = try(azurerm_backup_policy_file_share.this[0].id, null)
 }
