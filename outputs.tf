@@ -1,4 +1,9 @@
 
+output "resource_group" {
+  description = "Resource Group Resource"
+  value       = azurerm_resource_group.this
+}
+
 output "storage_account" {
   description = "Storage Account Resource"
   value       = azurerm_storage_account.this
